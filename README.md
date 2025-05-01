@@ -41,3 +41,13 @@ minikube tunnel
    ```
    curl -X GET http://localhost/getbooks
    ```
+
+## Setup Keycloak for JWT authentication
+
+Now that we have helm we can set up keycloak.
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+cd keycloak-authentication-tutorial-helm-kubernetes
+helm install keycloak bitnami/keycloak -f helm/values.yaml
+```
