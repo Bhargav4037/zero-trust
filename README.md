@@ -1,6 +1,16 @@
 # zero-trust-architure
-Make sure you have istio and helm installed in your system.
-This is a simple book-info app which requires mysql db to store information about books and expose two api endpoints to add and view books
+Make sure you have istio, helm and minikube installed in your system.
+
+## Configure and install requirements.
+1. Once you have these start the minikube by this command.
+   ```
+   minikube start
+   ```
+2. Install the Istio on your Kubernetes cluster using istioctl with a demo configuration profile
+   ```
+   istioctl install --set profile=demo -y
+   ``` 
+This is a simple book-info app which requires mysql db to store information about books and expose two api endpoints to add and view books on which test the zero trust.
 
 ## Installing app on kubernetes
 ```
