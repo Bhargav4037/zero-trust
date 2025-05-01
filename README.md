@@ -9,7 +9,15 @@ Make sure you have istio, helm and minikube installed in your system.
 2. Install the Istio on your Kubernetes cluster using istioctl with a demo configuration profile
    ```
    istioctl install --set profile=demo -y
-   ``` 
+   ```
+3.Labels the default namespace so that Istio automatically injects Envoy sidecars into all new pods in this namespace.
+   ```
+   kubectl label namespace default istio-injection=enabled
+   ```
+4.Enforce mTLS with PeerAuthentication:Enables strict mTLS for all workloads in the mesh. Only mTLS connections are allowed between services.
+   ```
+   kubectl apply -f mTLS.yaml
+   ```
 For the testing sake we will use this simple book-info app which requires mysql db to store information about books and expose two api endpoints to add and view books.
 
 ## Installing book-info app on kubernetes
