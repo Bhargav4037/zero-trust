@@ -50,4 +50,28 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 cd keycloak-authentication-tutorial-helm-kubernetes
 helm install keycloak bitnami/keycloak -f helm/values.yaml
+kubectl port-forward svc/keycloak 8080:80
+```
+
+## Configure keycloak
+Now keycloak will be up and running in the localhost:8080
+1. Go to admin consolelogin with username admin and password also admin.
+2. After login create a new realm Istio
+3. Make some realms roles example admin and user
+4. Configure the client with username Istio and click add client
+5. Create two users book-admin and book-user assign roles admin and user respectively for these users and create credentials for them.
+```
+cd ..
+kubectl apply -f request_auth.yaml
+kubectl apply -f Authorization.yaml
+```
+
+## Jwt Authentication and authorisation
+1. Generates the jwt access token.
+```
+curl -X POST -d "client_id=Istio" -d "username=book-user" -d "password=*****" -d "grant_type=password" "http://127.0.0.1:8080/realms/Istio/protocol/openid-connect/token"
+```
+2. Authorises and authenticates the token
+```
+curl -X GET -H "host: book-info.test.io" -H "Authorization: Bearer <accessToken>" http://127.0.0.1/getbooks
 ```
