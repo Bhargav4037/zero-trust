@@ -14,10 +14,6 @@ Make sure you have istio, helm and minikube installed in your system.
    ```
    kubectl label namespace default istio-injection=enabled
    ```
-4.Enforce mTLS with PeerAuthentication:Enables strict mTLS for all workloads in the mesh. Only mTLS connections are allowed between services.
-   ```
-   kubectl apply -f mTLS.yaml
-   ```
 For the testing sake we will use this simple book-info app which requires mysql db to store information about books and expose two api endpoints to add and view books.
 
 ## Installing book-info app on kubernetes
@@ -27,6 +23,10 @@ cd istio-keycloak
 kubectl apply -f app/database.yaml
 kubectl apply -f app/app.yaml
 ```
+Enforce mTLS with PeerAuthentication:Enables strict mTLS for all workloads in the mesh. Only mTLS connections are allowed between services.
+   ```
+   kubectl apply -f mTLS.yaml
+   ```
 Now, we will set up an Istio gateway and virtual service to access the app. Gateway allows us to configure ingress traffic to our application from external systems and users. Plus, the Istio gateway does not include any traffic routing configuration so we have to create a virtual service to route traffic coming in from the Istio gateway to the backend kubernetes service.
 ```
 kubectl apply -f istio-manifests/ingressGateway.yaml
