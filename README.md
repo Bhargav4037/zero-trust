@@ -1,4 +1,5 @@
-# zero-trust
+# zero-trust-architure
+Make sure you have istio and helm installed in your system.
 This is a simple book-info app which requires mysql db to store information about books and expose two api endpoints to add and view books
 
 ## Installing app on kubernetes
