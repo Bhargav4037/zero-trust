@@ -60,6 +60,7 @@ Now keycloak will be up and running in the localhost:8080
 3. Make some realms roles example admin and user
 4. Configure the client with username Istio and click add client
 5. Create two users book-admin and book-user assign roles admin and user respectively for these users and create credentials for them.
+6. This authorisation contains the rules for which paths a service is accessible or not. Make changes in these if you want to changes the authorisation policy
 ```
 cd ..
 kubectl apply -f request_auth.yaml
